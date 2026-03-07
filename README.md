@@ -140,15 +140,19 @@ The forward predictive power of AIS-derived metrics for crude timespreads is mod
 
 A desk would combine these with proprietary data sources for a more complete picture.
 
-## Dashboard
+**Data collection status:** The pipeline has been collecting live AIS data since March 2026. Trade implications analysis requires a minimum observation period of ~2 weeks before correlations become meaningful — floating storage detection alone needs 7+ days of continuous vessel tracking. Results will strengthen as the observation window grows.
+
+## Live Dashboard
+
+**Live demo:** [web-production-8e65.up.railway.app](https://web-production-8e65.up.railway.app) — deployed on Railway, collecting data 24/7 since March 2026.
 
 The Streamlit dashboard provides five views:
 
-- **Live Map** — Interactive folium map with tankers colour-coded by status (laden/ballast/anchor/storage/terminal), terminal geofences, and anchorage zones
+- **Live Map** — Interactive Plotly Scattermapbox with tankers colour-coded by status (laden/ballast/anchor/storage/terminal), terminal markers, live Brent and WTI spot prices
 - **Brent Loading** — Cargo counts and volumes by BFOET grade, weekly trend charts, recent departure table
 - **ARA Storage** — Floating storage time series with M1-M2 spread overlay, current anchorage occupancy, dwell time trends
 - **Baltic Exports** — Export volumes by terminal, destination breakdown (Atlantic vs intra-Baltic), AIS gap/shadow fleet analysis
-- **Trade Implications** — Correlation results with lag analysis, walk-forward validation, regime breakdown, current market signal
+- **Trade Implications** — Correlation results with lag analysis, walk-forward validation, regime breakdown, current market signal with commercial commentary
 
 ## How to Run
 
