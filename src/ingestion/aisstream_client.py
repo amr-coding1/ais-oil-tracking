@@ -15,8 +15,18 @@ logger = logging.getLogger(__name__)
 
 AISSTREAM_WS_URL = "wss://stream.aisstream.io/v0/stream"
 
-# North Sea + Baltic bounding box
-DEFAULT_BOUNDING_BOX = [[[49.0, -5.0], [66.0, 30.0]]]
+# North Sea + Baltic bounding boxes (split into smaller regions to stay
+# within aisstream.io size limits — a single large box silently fails).
+DEFAULT_BOUNDING_BOXES = [
+    [[49.0, -5.0], [54.0, 5.0]],    # Southern North Sea / English Channel
+    [[54.0, -2.0], [58.0, 8.0]],    # Central North Sea
+    [[58.0, -5.0], [62.0, 8.0]],    # Norwegian Sea
+    [[54.0, 8.0], [58.0, 16.0]],    # Danish Straits / SW Baltic
+    [[58.0, 8.0], [62.0, 20.0]],    # Skagerrak / Central Baltic
+    [[62.0, 10.0], [66.0, 30.0]],   # Gulf of Bothnia / Finland
+    [[56.0, 16.0], [60.0, 24.0]],   # Central Baltic
+    [[54.0, 16.0], [56.0, 22.0]],   # SE Baltic (Poland / Kaliningrad)
+]
 
 
 class AISStreamClient:
@@ -32,7 +42,7 @@ class AISStreamClient:
         self.api_key = api_key
         self.on_position = on_position
         self.on_metadata = on_metadata
-        self.bounding_boxes = bounding_boxes or DEFAULT_BOUNDING_BOX
+        self.bounding_boxes = bounding_boxes or DEFAULT_BOUNDING_BOXES
         self._running = False
         self._reconnect_delay = 1.0
         self._max_reconnect_delay = 60.0

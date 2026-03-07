@@ -43,6 +43,94 @@
         "lon_max": 4.00
       },
       "description": "General anchorage off Dutch/Belgian coast"
+    },
+    "primorsk_anchorage": {
+      "name": "Primorsk Anchorage",
+      "region": "Baltic",
+      "bounds": {
+        "lat_min": 60.25,
+        "lat_max": 60.45,
+        "lon_min": 28.70,
+        "lon_max": 29.20
+      },
+      "description": "Primorsk crude export terminal anchorage area"
+    },
+    "ust_luga_anchorage": {
+      "name": "Ust-Luga Anchorage",
+      "region": "Baltic",
+      "bounds": {
+        "lat_min": 59.55,
+        "lat_max": 59.75,
+        "lon_min": 28.10,
+        "lon_max": 28.60
+      },
+      "description": "Ust-Luga crude export terminal anchorage area"
+    },
+    "gdansk_anchorage": {
+      "name": "Gdansk/Naftoport Anchorage",
+      "region": "Baltic",
+      "bounds": {
+        "lat_min": 54.35,
+        "lat_max": 54.50,
+        "lon_min": 18.50,
+        "lon_max": 18.85
+      },
+      "description": "Gdansk Bay anchorage for Naftoport terminal"
+    },
+    "butinge_anchorage": {
+      "name": "Butinge Anchorage",
+      "region": "Baltic",
+      "bounds": {
+        "lat_min": 55.95,
+        "lat_max": 56.15,
+        "lon_min": 20.85,
+        "lon_max": 21.20
+      },
+      "description": "Butinge offshore terminal anchorage area"
+    },
+    "skagerrak_anchorage": {
+      "name": "Skagerrak Anchorage",
+      "region": "North Sea",
+      "bounds": {
+        "lat_min": 57.60,
+        "lat_max": 57.85,
+        "lon_min": 9.50,
+        "lon_max": 10.50
+      },
+      "description": "Skagerrak waiting area between North Sea and Baltic"
+    },
+    "scapa_flow": {
+      "name": "Scapa Flow",
+      "region": "North Sea",
+      "bounds": {
+        "lat_min": 58.80,
+        "lat_max": 58.95,
+        "lon_min": -3.20,
+        "lon_max": -2.90
+      },
+      "description": "Scapa Flow STS transfer and anchorage area, Orkney"
+    },
+    "southwold_anchorage": {
+      "name": "Southwold Anchorage",
+      "region": "North Sea",
+      "bounds": {
+        "lat_min": 52.20,
+        "lat_max": 52.50,
+        "lon_min": 1.50,
+        "lon_max": 2.20
+      },
+      "description": "Southern North Sea anchorage off East Anglia"
+    },
+    "danish_straits_anchorage": {
+      "name": "Danish Straits Anchorage",
+      "region": "Baltic",
+      "bounds": {
+        "lat_min": 55.50,
+        "lat_max": 55.80,
+        "lon_min": 12.50,
+        "lon_max": 13.00
+      },
+      "description": "Anchorage area near the Great Belt / Oresund approaches"
     }
   }
 }
