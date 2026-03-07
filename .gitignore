@@ -1,0 +1,41 @@
+# Data files
+data/vessels.db
+data/vessels.db-wal
+data/vessels.db-shm
+data/market_data/
+
+# Environment / secrets
+.env
+config/settings.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Analysis outputs
+analysis/results/
+reports/*.pdf
+reports/*.md
+
+# Jupyter
+.ipynb_checkpoints/

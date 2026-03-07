@@ -1,0 +1,26 @@
+{
+  "bounding_box": {
+    "lat_min": 49.0,
+    "lat_max": 66.0,
+    "lon_min": -5.0,
+    "lon_max": 30.0
+  },
+  "detection": {
+    "stationary_speed_knots": 1.0,
+    "floating_storage_min_days": 7,
+    "loading_min_hours": 12,
+    "terminal_radius_nm": 5.0
+  },
+  "database": {
+    "path": "data/vessels.db",
+    "position_retention_days": 90
+  },
+  "collection": {
+    "position_interval_seconds": 300,
+    "dedup_window_seconds": 60
+  },
+  "market_data": {
+    "brent_ticker": "BZ=F",
+    "update_interval_hours": 6
+  }
+}

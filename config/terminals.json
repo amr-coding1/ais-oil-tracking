@@ -1,0 +1,84 @@
+{
+  "terminals": {
+    "sullom_voe": {
+      "name": "Sullom Voe",
+      "grade": "Brent",
+      "latitude": 60.45,
+      "longitude": -1.30,
+      "radius_nm": 5.0,
+      "description": "Brent crude loading terminal, Shetland Islands"
+    },
+    "hound_point": {
+      "name": "Hound Point",
+      "grade": "Forties",
+      "latitude": 56.00,
+      "longitude": -3.38,
+      "radius_nm": 5.0,
+      "description": "Forties crude loading terminal, Firth of Forth"
+    },
+    "sture": {
+      "name": "Sture",
+      "grade": "Oseberg",
+      "latitude": 60.79,
+      "longitude": 4.84,
+      "radius_nm": 5.0,
+      "description": "Oseberg crude loading terminal, Norway"
+    },
+    "mongstad": {
+      "name": "Mongstad",
+      "grade": "Troll",
+      "latitude": 60.81,
+      "longitude": 5.03,
+      "radius_nm": 5.0,
+      "description": "Troll/Johan Sverdrup crude loading terminal, Norway"
+    },
+    "ekofisk": {
+      "name": "Ekofisk",
+      "grade": "Ekofisk",
+      "latitude": 56.54,
+      "longitude": 3.21,
+      "radius_nm": 5.0,
+      "description": "Ekofisk field direct loading area, North Sea"
+    },
+    "teesside": {
+      "name": "Teesside",
+      "grade": "Ekofisk",
+      "latitude": 54.65,
+      "longitude": -1.15,
+      "radius_nm": 5.0,
+      "description": "Ekofisk crude pipeline terminal, Teesside UK"
+    },
+    "primorsk": {
+      "name": "Primorsk",
+      "grade": "Urals",
+      "latitude": 60.35,
+      "longitude": 29.00,
+      "radius_nm": 5.0,
+      "description": "Russia's largest Baltic crude export terminal"
+    },
+    "ust_luga": {
+      "name": "Ust-Luga",
+      "grade": "Urals",
+      "latitude": 59.68,
+      "longitude": 28.40,
+      "radius_nm": 5.0,
+      "description": "Russian Baltic crude export terminal"
+    },
+    "gdansk": {
+      "name": "Gdansk/Naftoport",
+      "grade": "CPC Blend",
+      "latitude": 54.40,
+      "longitude": 18.67,
+      "radius_nm": 5.0,
+      "description": "Polish crude import/CPC Blend terminal"
+    },
+    "butinge": {
+      "name": "Butinge",
+      "grade": "Various",
+      "latitude": 56.07,
+      "longitude": 21.05,
+      "radius_nm": 5.0,
+      "description": "Lithuanian crude import terminal for Mazeikiai refinery"
+    }
+  }
+}

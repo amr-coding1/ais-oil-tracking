@@ -1,0 +1,48 @@
+{
+  "anchorage_zones": {
+    "rotterdam_europoort": {
+      "name": "Rotterdam Europoort Approaches",
+      "region": "ARA",
+      "bounds": {
+        "lat_min": 51.95,
+        "lat_max": 52.05,
+        "lon_min": 3.80,
+        "lon_max": 4.20
+      },
+      "description": "Rotterdam Europoort approaches and anchorage"
+    },
+    "antwerp_scheldt": {
+      "name": "Antwerp Scheldt Approaches",
+      "region": "ARA",
+      "bounds": {
+        "lat_min": 51.35,
+        "lat_max": 51.45,
+        "lon_min": 3.20,
+        "lon_max": 3.60
+      },
+      "description": "Antwerp Scheldt estuary approaches and anchorage"
+    },
+    "ijmuiden_amsterdam": {
+      "name": "IJmuiden/Amsterdam Approaches",
+      "region": "ARA",
+      "bounds": {
+        "lat_min": 52.40,
+        "lat_max": 52.50,
+        "lon_min": 4.30,
+        "lon_max": 4.70
+      },
+      "description": "IJmuiden and Amsterdam port approaches"
+    },
+    "north_sea_anchorage": {
+      "name": "North Sea General Anchorage",
+      "region": "ARA",
+      "bounds": {
+        "lat_min": 51.80,
+        "lat_max": 52.20,
+        "lon_min": 3.00,
+        "lon_max": 4.00
+      },
+      "description": "General anchorage off Dutch/Belgian coast"
+    }
+  }
+}

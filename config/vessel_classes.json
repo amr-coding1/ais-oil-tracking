@@ -1,0 +1,42 @@
+{
+  "vessel_classes": {
+    "VLCC": {
+      "min_length_m": 300,
+      "max_length_m": 400,
+      "typical_dwt": 300000,
+      "full_load_bbl": 2000000,
+      "description": "Very Large Crude Carrier"
+    },
+    "Suezmax": {
+      "min_length_m": 250,
+      "max_length_m": 300,
+      "typical_dwt": 150000,
+      "full_load_bbl": 1000000,
+      "description": "Suezmax tanker"
+    },
+    "Aframax": {
+      "min_length_m": 220,
+      "max_length_m": 250,
+      "typical_dwt": 100000,
+      "full_load_bbl": 600000,
+      "description": "Aframax tanker"
+    },
+    "MR": {
+      "min_length_m": 170,
+      "max_length_m": 220,
+      "typical_dwt": 50000,
+      "full_load_bbl": 350000,
+      "description": "Medium Range products tanker"
+    },
+    "Small": {
+      "min_length_m": 0,
+      "max_length_m": 170,
+      "typical_dwt": 20000,
+      "full_load_bbl": 140000,
+      "description": "Small tanker / coaster"
+    }
+  },
+  "laden_threshold": 0.70,
+  "ballast_threshold": 0.50,
+  "tanker_type_codes": [80, 81, 82, 83, 84, 85, 86, 87, 88, 89]
+}
