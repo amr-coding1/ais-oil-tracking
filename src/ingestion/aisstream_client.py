@@ -125,7 +125,8 @@ class AISStreamClient:
                 beam = c + d if (c + d) > 0 else None
 
             draft_raw = static.get("MaximumStaticDraught")
-            draft_m = draft_raw / 10.0 if draft_raw and draft_raw > 0 else None
+            # aisstream.io already decodes draught to metres (not raw AIS tenths)
+            draft_m = draft_raw if draft_raw and draft_raw > 0 else None
 
             self.on_metadata(
                 mmsi=mmsi,

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import pytest
 
+from src.database import estimate_laden_fraction
 from src.tracking.vessel_tracker import VesselTracker, _haversine_nm
 
 
@@ -85,3 +86,60 @@ class TestVesselTracker:
             latitude=52.0, longitude=4.0,  # Rotterdam anchorage
         )
         assert status == "at_anchor"
+
+    def test_status_ballast_with_class_fallback(self, tracker):
+        """When max_draft is None, class typical should be used."""
+        status = tracker.determine_status(
+            sog=12.0, draft_m=6.0, max_draft=None,
+            latitude=55.0, longitude=0.0,
+            vessel_class="Aframax",  # typical_max_draft_m = 15.0 → 6/15 = 0.4 < 0.5
+        )
+        assert status == "moving_ballast"
+
+    def test_status_laden_with_class_fallback(self, tracker):
+        """When max_draft equals current (bootstrap), class typical should be used."""
+        status = tracker.determine_status(
+            sog=12.0, draft_m=12.0, max_draft=12.0,
+            latitude=55.0, longitude=0.0,
+            vessel_class="Aframax",  # typical_max_draft_m = 15.0 → 12/15 = 0.8 >= 0.7
+        )
+        assert status == "moving_laden"
+
+    def test_status_uncertain_no_draft(self, tracker):
+        """No draft data at all should give uncertain."""
+        status = tracker.determine_status(
+            sog=12.0, draft_m=None, max_draft=None,
+            latitude=55.0, longitude=0.0,
+            vessel_class="Aframax",
+        )
+        assert status == "moving_uncertain"
+
+
+class TestEstimateLadenFraction:
+    def test_with_observed_max_draft(self):
+        status, frac = estimate_laden_fraction(12.0, 14.0)
+        assert status == "laden"
+
+    def test_ballast_with_observed_max_draft(self):
+        status, frac = estimate_laden_fraction(5.0, 14.0)
+        assert status == "ballast"
+
+    def test_class_fallback_when_no_max_draft(self):
+        status, frac = estimate_laden_fraction(6.0, None, vessel_class="Aframax")
+        assert status == "ballast"
+        assert 0.39 < frac < 0.41  # 6/15 = 0.4
+
+    def test_class_fallback_when_bootstrap(self):
+        """max_draft == current_draft means only one observation."""
+        status, frac = estimate_laden_fraction(6.0, 6.0, vessel_class="Aframax")
+        assert status == "ballast"  # 6/15 = 0.4
+
+    def test_no_fallback_when_max_draft_exceeds_current(self):
+        """When max_draft > current_draft, it's a real observation — use it."""
+        status, frac = estimate_laden_fraction(6.0, 14.0, vessel_class="Aframax")
+        assert status == "ballast"
+        assert 0.42 < frac < 0.44  # 6/14 not 6/15
+
+    def test_uncertain_with_no_info(self):
+        status, frac = estimate_laden_fraction(None, None)
+        assert status == "uncertain"

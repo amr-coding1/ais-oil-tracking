@@ -88,9 +88,11 @@ class DataFusionEngine:
 
             # Determine vessel status
             max_draft = self._get_max_draft(mmsi)
+            vessel_class = self._get_vessel_class(mmsi)
             status = self.tracker.determine_status(
                 sog=sog, draft_m=draft_m, max_draft=max_draft,
                 latitude=latitude, longitude=longitude,
+                vessel_class=vessel_class,
             )
 
             # Persist — ensure vessel record exists before inserting position
@@ -169,6 +171,12 @@ class DataFusionEngine:
             "SELECT max_draft_m FROM vessels WHERE mmsi = ?", (mmsi,)
         ).fetchone()
         return row["max_draft_m"] if row else None
+
+    def _get_vessel_class(self, mmsi: int) -> str | None:
+        row = self.conn.execute(
+            "SELECT vessel_class FROM vessels WHERE mmsi = ?", (mmsi,)
+        ).fetchone()
+        return row["vessel_class"] if row else None
 
     @property
     def stats(self) -> dict[str, int]:

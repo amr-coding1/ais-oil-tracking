@@ -180,17 +180,49 @@ def is_tanker(ship_type: int | None) -> bool:
     return 80 <= ship_type <= 89
 
 
+def _get_typical_max_draft(vessel_class: str | None) -> float | None:
+    """Return the typical max draft for a vessel class, or None."""
+    if not vessel_class:
+        return None
+    vc = _get_vc()
+    cls = vc["vessel_classes"].get(vessel_class)
+    if cls:
+        return cls.get("typical_max_draft_m")
+    return None
+
+
 def estimate_laden_fraction(
-    current_draft: float | None, max_draft: float | None
+    current_draft: float | None,
+    max_draft: float | None,
+    vessel_class: str | None = None,
 ) -> tuple[str, float]:
     """Return (laden_status, load_fraction) based on draft ratio.
+
+    When max_draft is unavailable or unreliable (equal to current_draft,
+    meaning the vessel hasn't been observed long enough), falls back to
+    the typical max draft for the vessel class.
 
     laden_status: 'laden', 'ballast', or 'uncertain'
     """
     vc = _get_vc()
-    if current_draft is None or max_draft is None or max_draft <= 0:
+    if current_draft is None:
         return "uncertain", 0.0
-    fraction = current_draft / max_draft
+
+    # Use observed max_draft, but fall back to class typical if it's missing
+    # or if it equals current_draft (bootstrap problem — only one observation)
+    effective_max = max_draft
+    if effective_max is None or effective_max <= 0:
+        effective_max = _get_typical_max_draft(vessel_class)
+    elif effective_max == current_draft:
+        # Only one draft value observed — prefer class typical if available
+        typical = _get_typical_max_draft(vessel_class)
+        if typical and typical > current_draft:
+            effective_max = typical
+
+    if effective_max is None or effective_max <= 0:
+        return "uncertain", 0.0
+
+    fraction = current_draft / effective_max
     if fraction >= vc["laden_threshold"]:
         return "laden", fraction
     elif fraction < vc["ballast_threshold"]:

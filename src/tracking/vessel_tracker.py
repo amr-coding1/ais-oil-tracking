@@ -111,6 +111,7 @@ class VesselTracker:
         max_draft: float | None,
         latitude: float,
         longitude: float,
+        vessel_class: str | None = None,
     ) -> str:
         """Determine the current operational status of a vessel.
 
@@ -120,7 +121,7 @@ class VesselTracker:
         """
         terminal = self.find_terminal(latitude, longitude)
         is_slow = sog is not None and sog < 1.0
-        laden_status, _ = estimate_laden_fraction(draft_m, max_draft)
+        laden_status, _ = estimate_laden_fraction(draft_m, max_draft, vessel_class)
 
         if terminal and is_slow:
             return "at_terminal"

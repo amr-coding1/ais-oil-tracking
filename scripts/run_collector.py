@@ -62,11 +62,22 @@ signal.signal(signal.SIGTERM, _signal_handler)
 # ---------------------------------------------------------------------------
 
 
+def _prune_old_positions(conn, days: int = 30) -> int:
+    """Delete position records older than N days to prevent unbounded DB growth."""
+    cursor = conn.execute(
+        "DELETE FROM positions WHERE timestamp < datetime('now', ?)",
+        (f"-{days} days",),
+    )
+    conn.commit()
+    return cursor.rowcount
+
+
 def run_periodic_tasks(fusion: DataFusionEngine) -> None:
     """Run periodic analysis tasks in a background thread."""
     detector = FloatingStorageDetector(fusion.conn)
     last_storage_check = 0
     last_metrics_update = 0
+    last_prune = 0
 
     while not _shutdown.is_set():
         now = time.time()
@@ -89,6 +100,16 @@ def run_periodic_tasks(fusion: DataFusionEngine) -> None:
                 last_metrics_update = now
             except Exception:
                 logger.exception("Error updating market data")
+
+        # Prune old positions — every 24 hours
+        if now - last_prune > 86400:
+            try:
+                deleted = _prune_old_positions(fusion.conn, days=30)
+                if deleted:
+                    logger.info("Pruned %d position records older than 30 days", deleted)
+                last_prune = now
+            except Exception:
+                logger.exception("Error pruning old positions")
 
         _shutdown.wait(timeout=60)
 

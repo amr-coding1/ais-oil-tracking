@@ -72,7 +72,7 @@ class FloatingStorageDetector:
         for row in stationary:
             mmsi = row["mmsi"]
             laden_status, load_fraction = estimate_laden_fraction(
-                row["draft_m"], row["max_draft_m"]
+                row["draft_m"], row["max_draft_m"], row["vessel_class"]
             )
 
             # Check all conditions
